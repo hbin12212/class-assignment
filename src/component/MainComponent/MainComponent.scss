@@ -1,0 +1,24 @@
+.MainComponent {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    .school-name {
+        display: flex;
+        justify-content: center;
+        font-size: 5.5rem;
+        font-family: "Gmarket Medium";
+        margin-bottom: 10px;
+    }
+    .information {
+        font-family: "Gmarket Medium";
+        width: 100%;
+        #info-header {
+            text-align: center;
+            font-size: 2rem;
+        }
+        #info-content {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    }
+}
