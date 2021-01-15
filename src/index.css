@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Gmarket Bold";
+    src: url(./fonts/GMARKETSANSTTFBOLD.TTF) format("truetype");
+}
+@font-face {
+    font-family: "Gmarket Medium";
+    src: url(./fonts/GMARKETSANSTTFMEDIUM.TTF) format("truetype");
+}
+@font-face {
+    font-family: "Gmarket Light";
+    src: url(./fonts/GMARKETSANSTTFLIGHT.TTF) format("truetype");
+}
