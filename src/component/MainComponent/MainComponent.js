@@ -15,9 +15,10 @@ const MainComponent = () => {
                     <div className="information">
                         <div id="info-header">정보입력</div>
                         <div id="info-content">본인의 생년월일과 이름을 입력해주세요.</div>
-                    </div>
-                    <div className="input-box">
-                        <InputBox />
+
+                        <div className="input-box">
+                            <InputBox />
+                        </div>
                     </div>
                 </Container>
             </div>
