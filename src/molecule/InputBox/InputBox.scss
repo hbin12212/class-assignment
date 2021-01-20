@@ -1,6 +1,28 @@
 .InputBox {
+    padding-left: 80px;
+    padding-right: 80px;
     .birth-wrapper {
+        .label {
+            display: flex;
+            font-size: 20px;
+            align-items: center;
+            #birth-icon {
+                font-size: 35px;
+                margin-right: 30px;
+            }
+            span {
+            }
+        }
     }
     .name-wrapper {
+        .label {
+            display: flex;
+            font-size: 20px;
+            align-items: center;
+            #name-icon {
+                font-size: 35px;
+                margin-right: 30px;
+            }
+        }
     }
 }

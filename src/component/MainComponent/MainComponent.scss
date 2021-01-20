@@ -2,10 +2,15 @@
     display: flex;
     height: 100vh;
     align-items: center;
+    background-image: url("https://images.unsplash.com/photo-1516053256215-94022213b13c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1267&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+
     .school-name {
         display: flex;
         justify-content: center;
-        font-size: 5rem;
+        font-size: 4rem;
         font-family: "Gmarket Medium";
         margin-bottom: 5px;
     }
