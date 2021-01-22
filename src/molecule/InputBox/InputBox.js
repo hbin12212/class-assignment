@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 //reactstrap
 import { Input, FormFeedback, Container, FormGroup, Button } from "reactstrap";
-
 //scss
 import "./InputBox.scss";
+//regex
+import { checkRegex } from "util/regex/regex";
 
 const GuideBox = () => {
     return (
@@ -16,8 +17,10 @@ const GuideBox = () => {
 };
 
 const InputBox = () => {
-    const [birth, setBirth] = useState("");
-    const [name, setName] = useState("");
+    const [state, setState] = useState({
+        name: "",
+        birthday: "",
+    });
     const [buttonState, setButtonState] = useState(false);
 
     return (
@@ -32,10 +35,10 @@ const InputBox = () => {
                     <FormGroup className="position-relative">
                         <Input
                             valid
-                            value={birth}
+                            value={state?.birthday}
                             className="input-box-birth"
                             placeholder="ex) 981231"
-                            onChange={({ target: { value } }) => setBirth(value)}
+                            onChange={({ target: { value } }) => setState(value)}
                         />
                         <FormFeedback valid tooltip>
                             6자리의 숫자만 입력 가능합니다.
@@ -51,17 +54,22 @@ const InputBox = () => {
                     <FormGroup className="position-relative">
                         <Input
                             invalid
-                            value={name}
+                            value={state?.name}
                             className="input-box-name"
                             placeholder="ex) 김희수"
-                            onChange={({ target: { value } }) => setName(value)}
+                            onChange={(event) =>
+                                setState({
+                                    ...state,
+                                    name: event.target.value,
+                                })
+                            }
                         />
-                        <FormFeedback tooltip>Sweet! that name is available</FormFeedback>
+                        <FormFeedback tooltip>숫자나 특수문자를 입력할 수 없습니다.</FormFeedback>
                     </FormGroup>
                 </div>
                 <div className="button-box">
                     <div
-                        className={buttonState ? "button-on" : "button-off"}
+                        className={"button " + buttonState === true ? "on" : "off"}
                         onClick={() => {
                             alert("클릭");
                         }}
