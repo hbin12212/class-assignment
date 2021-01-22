@@ -5,18 +5,19 @@ import { Container } from "reactstrap";
 import InputBox from "molecule/InputBox/InputBox";
 //scss
 import "./MainComponent.scss";
+//img
+import school_logo from "img/school_logo.png";
 
 const MainComponent = () => {
     return (
         <>
             <div className="MainComponent">
                 <Container>
-                    <div className="school-name">통진중학교</div>
-                    <div className="information">
-                        <div id="info-header">정보입력</div>
-                        {/* <div id="info-content">본인의 생년월일과 이름을 입력해주세요.</div> */}
-
-                        <div className="input-box">
+                    <div className="main-wrapper">
+                        <div className="left-wrapper">
+                            <img src={school_logo}></img>
+                        </div>
+                        <div className="right-wrapper">
                             <InputBox />
                         </div>
                     </div>

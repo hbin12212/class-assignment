@@ -1,28 +1,69 @@
 .InputBox {
+    .title {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
     padding-left: 80px;
     padding-right: 80px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-family: "Gmarket Medium";
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    -webkit-box-shadow: 10px 10px 30px -10px rgb(226, 226, 226);
+    -moz-box-shadow: 10px 10px 30px -10px rgb(226, 226, 226);
+    box-shadow: 10px 10px 30px -10px rgb(226, 226, 226);
+
     .birth-wrapper {
         .label {
             display: flex;
-            font-size: 20px;
+            font-size: 18px;
             align-items: center;
             #birth-icon {
-                font-size: 35px;
-                margin-right: 30px;
+                font-size: 25px;
+                margin-right: 10px;
             }
             span {
             }
         }
     }
     .name-wrapper {
+        margin-top: 10px;
         .label {
             display: flex;
-            font-size: 20px;
+            font-size: 18px;
             align-items: center;
             #name-icon {
-                font-size: 35px;
-                margin-right: 30px;
+                font-size: 25px;
+                margin-right: 10px;
             }
+        }
+    }
+    .button-box {
+        margin-top: 55px;
+        .button-on {
+            width: 100%;
+            text-align: center;
+            background-color: rgb(33, 150, 228);
+            border-radius: 12px;
+            color: white;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            cursor: pointer;
+        }
+        .button-off {
+            width: 100%;
+            font-weight: bold;
+            text-align: center;
+            color: rgb(77, 173, 236);
+            background-color: white;
+            border-radius: 12px;
+            border: 1px solid rgb(33, 150, 228);
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
     }
 }
