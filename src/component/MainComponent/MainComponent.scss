@@ -17,25 +17,23 @@
             }
             .homepage-button {
                 cursor: pointer;
-                margin-top: 35px;
+                margin-top: 45px;
                 border-radius: 10px;
                 background-color: black;
                 color: white;
                 text-align: center;
                 padding-top: 5px;
                 padding-bottom: 5px;
-                -webkit-box-shadow: 10px 10px 30px -10px rgba(207, 207, 207, 1);
-                -moz-box-shadow: 10px 10px 30px -10px rgba(207, 207, 207, 1);
-                box-shadow: 10px 10px 30px -10px rgba(207, 207, 207, 1);
+                -webkit-box-shadow: 10px 10px 30px -10px rgb(218, 218, 218);
+                -moz-box-shadow: 10px 10px 30px -10px rgba(218, 218, 218, 1);
+                box-shadow: 10px 10px 30px -10px rgba(218, 218, 218, 1);
                 .school-name {
-                    font-size: 13px;
+                    font-size: 15px;
                 }
                 .button-name {
                     font-size: 18px;
                 }
             }
-        }
-        .right-wrapper {
         }
     }
 }

@@ -5,7 +5,7 @@ import "./FooterComponent.scss";
 const FooterComponent = () => {
     return (
         <div className="FooterComponent">
-            <div>@희수효빈</div>
+            <div>Copyright &nbsp;©효빈희수</div>
         </div>
     );
 };
