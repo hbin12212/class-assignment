@@ -1,18 +1,97 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 //reactstrap
-import { Input, FormFeedback, Container, FormGroup, Button } from "reactstrap";
+import { Input, FormFeedback, Container, FormGroup } from "reactstrap";
 //scss
 import "./InputBox.scss";
 //regex
 import { checkRegex } from "util/regex/regex";
+//store
+import { ModalContext } from "store/ModalStore";
+//modal
+import ResultModal from "molecule/ResultModal/ResultModal";
+//img
+import school_logo from "img/school_logo.png";
 
-const GuideBox = () => {
+const BirthInputBox = ({ state, setState, buttonState, setButtonState }) => {
+    const [warnString, setWarnString] = useState("");
+
+    useEffect(() => {
+        var warn = checkRegex("생년월일에는", ["special", "number", "space"], state?.birthday);
+        setWarnString(warn[0]);
+        setButtonState({ ...buttonState, birthday: false });
+        console.log(warn?.length);
+        if (warn?.length < 1) {
+            if (state?.birthday?.length === 6) {
+                setButtonState({ ...buttonState, birthday: true });
+                setWarnString("옳바른 값을 입력했습니다.");
+            } else {
+                setWarnString("옳바른 값을 입력해주세요.");
+            }
+        }
+    }, [state?.birthday]);
+
     return (
-        <div className="GuideBox">
-            <div className="guide-box">
-                <div></div>
-            </div>
-        </div>
+        <FormGroup className="position-relative">
+            <Input
+                value={state?.birthday}
+                className={buttonState?.birthday ? "is-valid" : "is-invalid"}
+                placeholder="ex) 981231"
+                onChange={({ target: { value } }) =>
+                    setState({
+                        ...state,
+                        birthday: value,
+                    })
+                }
+            />
+            <FormFeedback
+                className={buttonState?.birthday ? "valid-tooltip" : "invalid-tooltip"}
+                style={{ fontSize: "12px" }}
+            >
+                {warnString}
+            </FormFeedback>
+        </FormGroup>
+    );
+};
+
+const NameInputBox = ({ state, setState, buttonState, setButtonState }) => {
+    const [warnString, setWarnString] = useState("");
+
+    useEffect(() => {
+        var warn = checkRegex("이름에는", ["special", "space"], state?.name);
+        setWarnString(warn[0]);
+        setButtonState({ ...buttonState, name: false });
+        console.log(warn?.length);
+        if (warn?.length < 1) {
+            if (state?.name?.length >= 2) {
+                setButtonState({ ...buttonState, name: true });
+                setWarnString("옳바른 값을 입력했습니다.");
+            } else {
+                setWarnString("옳바른 값을 입력해주세요.");
+            }
+        }
+    }, [state?.name]);
+
+    return (
+        <FormGroup className="position-relative">
+            <Input
+                value={state?.name}
+                className={buttonState?.name ? "is-valid" : "is-invalid"}
+                placeholder="ex) 김희수"
+                style={{ fontSize: "15px;" }}
+                onChange={({ target: { value } }) =>
+                    setState({
+                        ...state,
+                        name: value,
+                    })
+                }
+            />
+            <FormFeedback
+                className={buttonState?.name ? "valid-tooltip" : "invalid-tooltip"}
+                style={{ fontSize: "12px" }}
+            >
+                {warnString}
+            </FormFeedback>
+        </FormGroup>
     );
 };
 
@@ -21,29 +100,53 @@ const InputBox = () => {
         name: "",
         birthday: "",
     });
-    const [buttonState, setButtonState] = useState(false);
+    const [buttonState, setButtonState] = useState({
+        name: false,
+        birthday: false,
+    });
+    const [isButtonOn, setIsButtonOn] = useState(false);
+
+    useEffect(() => {
+        setIsButtonOn(false);
+        if (buttonState?.name && buttonState?.birthday) {
+            setIsButtonOn(true);
+        }
+    }, [buttonState]);
+    //context
+    const { resultModalToggle } = useContext(ModalContext);
+
+    const ClickableBtn = () => {
+        return (
+            <>
+                <div
+                    onClick={() => {
+                        resultModalToggle();
+                    }}
+                >
+                    확인하기
+                </div>
+            </>
+        );
+    };
 
     return (
         <Container>
             <div className="InputBox">
+                <div className="mobile-logo">
+                    <img src={school_logo}></img>
+                </div>
                 <div className="title">반 확인하기</div>
                 <div className="birth-wrapper">
                     <div className="label">
                         <div id="birth-icon">🎂</div>
                         <span>생년월일 6자리를 입력해주세요</span>
                     </div>
-                    <FormGroup className="position-relative">
-                        <Input
-                            valid
-                            value={state?.birthday}
-                            className="input-box-birth"
-                            placeholder="ex) 981231"
-                            onChange={({ target: { value } }) => setState(value)}
-                        />
-                        <FormFeedback valid tooltip>
-                            6자리의 숫자만 입력 가능합니다.
-                        </FormFeedback>
-                    </FormGroup>
+                    <BirthInputBox
+                        state={state}
+                        setState={setState}
+                        buttonState={buttonState}
+                        setButtonState={setButtonState}
+                    />
                 </div>
                 <br />
                 <div className="name-wrapper">
@@ -51,34 +154,20 @@ const InputBox = () => {
                         <div id="name-icon">📚</div>
                         <span>이름을 입력해주세요</span>
                     </div>
-                    <FormGroup className="position-relative">
-                        <Input
-                            invalid
-                            value={state?.name}
-                            className="input-box-name"
-                            placeholder="ex) 김희수"
-                            onChange={(event) =>
-                                setState({
-                                    ...state,
-                                    name: event.target.value,
-                                })
-                            }
-                        />
-                        <FormFeedback tooltip>숫자나 특수문자를 입력할 수 없습니다.</FormFeedback>
-                    </FormGroup>
+                    <NameInputBox
+                        state={state}
+                        setState={setState}
+                        buttonState={buttonState}
+                        setButtonState={setButtonState}
+                    />
                 </div>
                 <div className="button-box">
-                    <div
-                        className={"button " + buttonState === true ? "on" : "off"}
-                        onClick={() => {
-                            alert("클릭");
-                        }}
-                    >
-                        확인하기
+                    <div className={isButtonOn ? "on" : "off"}>
+                        {isButtonOn ? <ClickableBtn /> : <div>확인하기</div>}
                     </div>
                 </div>
             </div>
-            <GuideBox />
+            <ResultModal userName={state?.name} />
         </Container>
     );
 };
