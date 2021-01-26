@@ -133,7 +133,14 @@ const InputBox = () => {
         <Container>
             <div className="InputBox">
                 <div className="mobile-logo">
-                    <img src={school_logo}></img>
+                    <img
+                        src={school_logo}
+                        onClick={() => {
+                            {
+                                window.open("http://www.tongjin.ms.kr/wah/main/index.htm");
+                            }
+                        }}
+                    ></img>
                 </div>
                 <div className="title">반 확인하기</div>
                 <div className="birth-wrapper">
