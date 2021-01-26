@@ -1,68 +1,247 @@
+@import "meta.scss";
 .InputBox {
-    .title {
-        text-align: center;
-        font-size: 30px;
-        margin-bottom: 15px;
-        font-weight: bold;
-    }
-    padding-left: 80px;
-    padding-right: 80px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    font-family: "Gmarket Medium";
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid lightgray;
-    -webkit-box-shadow: 10px 10px 30px -10px rgba(207, 207, 207, 1);
-    -moz-box-shadow: 10px 10px 30px -10px rgba(207, 207, 207, 1);
-    box-shadow: 10px 10px 30px -10px rgba(207, 207, 207, 1);
+    @include mobile {
+        .mobile-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            img {
+                height: 70px;
+                width: 70px;
+            }
+        }
+        .title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-family: "Gmarket Medium";
+        background-color: white;
+        border-radius: 10px;
+        border: 2px solid lightgray;
+        -webkit-box-shadow: 10px 10px 30px -10px rgb(218, 218, 218);
+        -moz-box-shadow: 10px 10px 30px -10px rgba(218, 218, 218, 1);
+        box-shadow: 10px 10px 30px -10px rgba(218, 218, 218, 1);
 
-    .birth-wrapper {
-        .label {
-            display: flex;
-            font-size: 18px;
-            align-items: center;
-            #birth-icon {
-                font-size: 25px;
-                margin-right: 10px;
+        .birth-wrapper {
+            .label {
+                display: flex;
+                font-size: 15px;
+                align-items: center;
+                #birth-icon {
+                    display: none;
+                }
             }
-            span {
+            .valid-tooltip {
+                color: white !important;
+                margin-top: 0.1rem;
+            }
+        }
+        .name-wrapper {
+            margin-top: 10px;
+            .label {
+                display: flex;
+                font-size: 15px;
+                align-items: center;
+                #name-icon {
+                    display: none;
+                }
+            }
+            .valid-tooltip {
+                color: white !important;
+                margin-top: 0.1rem;
+            }
+        }
+        .button-box {
+            margin-top: 55px;
+            font-size: 18px;
+            .on {
+                width: 100%;
+                text-align: center;
+                background-color: rgb(33, 150, 228);
+                border-radius: 12px;
+                color: white;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                cursor: pointer;
+            }
+            .off {
+                width: 100%;
+                text-align: center;
+                background-color: rgb(33, 150, 228);
+                border-radius: 12px;
+                color: white;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                opacity: 0.5;
             }
         }
     }
-    .name-wrapper {
-        margin-top: 10px;
-        .label {
+    @include tablet {
+        .mobile-logo {
             display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            img {
+                height: 80px;
+                width: 80px;
+            }
+        }
+        .title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        padding-left: 100px;
+        padding-right: 100px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-family: "Gmarket Medium";
+        background-color: white;
+        border-radius: 10px;
+        border: 2px solid lightgray;
+        -webkit-box-shadow: 10px 10px 30px -10px rgb(218, 218, 218);
+        -moz-box-shadow: 10px 10px 30px -10px rgba(218, 218, 218, 1);
+        box-shadow: 10px 10px 30px -10px rgba(218, 218, 218, 1);
+
+        .birth-wrapper {
+            .label {
+                display: flex;
+                font-size: 16px;
+                align-items: center;
+                #birth-icon {
+                    font-size: 18px;
+                    margin-right: 3px;
+                }
+            }
+            .valid-tooltip {
+                color: white !important;
+                margin-top: 0.1rem;
+            }
+        }
+        .name-wrapper {
+            margin-top: 10px;
+            .label {
+                display: flex;
+                font-size: 16px;
+                align-items: center;
+                #name-icon {
+                    font-size: 18px;
+                    margin-right: 3px;
+                }
+            }
+            .valid-tooltip {
+                color: white !important;
+                margin-top: 0.1rem;
+            }
+        }
+        .button-box {
+            margin-top: 55px;
             font-size: 18px;
-            align-items: center;
-            #name-icon {
-                font-size: 25px;
-                margin-right: 10px;
+            .on {
+                width: 100%;
+                text-align: center;
+                background-color: rgb(33, 150, 228);
+                border-radius: 12px;
+                color: white;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                cursor: pointer;
+            }
+            .off {
+                width: 100%;
+                text-align: center;
+                background-color: rgb(33, 150, 228);
+                border-radius: 12px;
+                color: white;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                opacity: 0.5;
             }
         }
     }
-    .button-box {
-        margin-top: 55px;
-        .on {
-            width: 100%;
-            text-align: center;
-            background-color: rgb(33, 150, 228);
-            border-radius: 12px;
-            color: white;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            cursor: pointer;
+    @include desktop {
+        .mobile-logo {
+            display: none;
         }
-        .off {
-            width: 100%;
+        .title {
             text-align: center;
-            background-color: rgb(33, 150, 228);
-            border-radius: 12px;
-            color: white;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            opacity: 0.5;
+            font-size: 35px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        padding-left: 80px;
+        padding-right: 80px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-family: "Gmarket Medium";
+        background-color: white;
+        border-radius: 10px;
+        border: 2px solid lightgray;
+        -webkit-box-shadow: 10px 10px 30px -10px rgb(218, 218, 218);
+        -moz-box-shadow: 10px 10px 30px -10px rgba(218, 218, 218, 1);
+        box-shadow: 10px 10px 30px -10px rgba(218, 218, 218, 1);
+
+        .birth-wrapper {
+            .label {
+                display: flex;
+                font-size: 18px;
+                align-items: center;
+                #birth-icon {
+                    font-size: 25px;
+                    margin-right: 10px;
+                }
+            }
+            .valid-tooltip {
+                color: white !important;
+                margin-top: 0.1rem;
+            }
+        }
+        .name-wrapper {
+            margin-top: 10px;
+            .label {
+                display: flex;
+                font-size: 18px;
+                align-items: center;
+                #name-icon {
+                    font-size: 24px;
+                    margin-right: 10px;
+                }
+            }
+            .valid-tooltip {
+                color: white !important;
+                margin-top: 0.1rem;
+            }
+        }
+        .button-box {
+            margin-top: 55px;
+            font-size: 18px;
+            .on {
+                width: 100%;
+                text-align: center;
+                background-color: rgb(33, 150, 228);
+                border-radius: 12px;
+                color: white;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                cursor: pointer;
+            }
+            .off {
+                width: 100%;
+                text-align: center;
+                background-color: rgb(33, 150, 228);
+                border-radius: 12px;
+                color: white;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                opacity: 0.5;
+            }
         }
     }
 }

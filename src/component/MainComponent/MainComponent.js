@@ -7,6 +7,8 @@ import InputBox from "molecule/InputBox/InputBox";
 import "./MainComponent.scss";
 //img
 import school_logo from "img/school_logo.png";
+//store
+import { ModalProvider } from "store/ModalStore";
 
 const MainComponent = () => {
     return (
@@ -29,7 +31,9 @@ const MainComponent = () => {
                             </div>
                         </div>
                         <div className="right-wrapper">
-                            <InputBox />
+                            <ModalProvider>
+                                <InputBox />
+                            </ModalProvider>
                         </div>
                     </div>
                 </Container>
