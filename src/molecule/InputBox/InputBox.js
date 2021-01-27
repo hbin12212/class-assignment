@@ -23,9 +23,9 @@ const BirthInputBox = ({ state, setState, buttonState, setButtonState }) => {
         if (warn?.length < 1) {
             if (state?.birthday?.length === 6) {
                 setButtonState({ ...buttonState, birthday: true });
-                setWarnString("옳바른 값을 입력했습니다.");
+                setWarnString("올바른 값을 입력했습니다.");
             } else {
-                setWarnString("옳바른 값을 입력해주세요.");
+                setWarnString("올바른 값을 입력해주세요.");
             }
         }
     }, [state?.birthday]);
@@ -64,9 +64,9 @@ const NameInputBox = ({ state, setState, buttonState, setButtonState }) => {
         if (warn?.length < 1) {
             if (state?.name?.length >= 2) {
                 setButtonState({ ...buttonState, name: true });
-                setWarnString("옳바른 값을 입력했습니다.");
+                setWarnString("올바른 값을 입력했습니다.");
             } else {
-                setWarnString("옳바른 값을 입력해주세요.");
+                setWarnString("올바른 값을 입력해주세요.");
             }
         }
     }, [state?.name]);

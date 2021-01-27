@@ -18,7 +18,7 @@ export const SearchSpecialInput = /[\{\}\[\]\/<>$;:\\\\(\'\"]/gi;
 export const checkRegex = (plusComment, types, input) => {
     var warn = [];
     if (input?.length < 1) {
-        warn.push("옳바른 값을 입력해주세요.");
+        warn.push("올바른 값을 입력해주세요.");
     } else {
         for (var i = 0; i < types?.length; i++) {
             if (types[i] === "special") {
