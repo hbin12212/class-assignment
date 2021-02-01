@@ -24,14 +24,12 @@ const ResultModal = ({ userInfo }) => {
 
     useEffect(() => {
         if (resultModalClick) {
-            console.log(userInfo?.name);
             var tongjinData = db.collection("tongjin");
             tongjinData
                 .where("name", "==", userInfo?.name)
                 .get()
                 .then(function (querySnapshot) {
                     querySnapshot.forEach(function (doc) {
-                        console.log(doc.id, " => ", doc.data());
                         if (doc.data().birth.seconds === getTimeStamp(userInfo?.birthday)) {
                             setClassResult(doc.data().class);
                         } else {
@@ -41,7 +39,6 @@ const ResultModal = ({ userInfo }) => {
                 })
                 .catch(function (error) {
                     setClassResult("다시 시도해주세요.");
-                    console.log("오류입니다. 다시 시도해주세요.");
                 });
         }
     }, [resultModalClick]);
