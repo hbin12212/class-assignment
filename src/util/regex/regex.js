@@ -26,7 +26,6 @@ export const checkRegex = (plusComment, types, input) => {
                     warn.push(plusComment + " " + "특수문자를 포함할 수 없습니다.");
                 }
             } else if (types[i] === "number") {
-                console.log(isNaN(input));
                 if (isNaN(input)) {
                     warn.push(plusComment + " " + "숫자만 입력할 수 있습니다.");
                 }
@@ -37,7 +36,6 @@ export const checkRegex = (plusComment, types, input) => {
             }
         }
     }
-    console.log(warn);
     return warn;
 };
 

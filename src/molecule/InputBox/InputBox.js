@@ -19,7 +19,6 @@ const BirthInputBox = ({ state, setState, buttonState, setButtonState }) => {
         var warn = checkRegex("생년월일에는", ["special", "number", "space"], state?.birthday);
         setWarnString(warn[0]);
         setButtonState({ ...buttonState, birthday: false });
-        console.log(warn?.length);
         if (warn?.length < 1) {
             if (state?.birthday?.length === 6) {
                 setButtonState({ ...buttonState, birthday: true });
@@ -35,7 +34,7 @@ const BirthInputBox = ({ state, setState, buttonState, setButtonState }) => {
             <Input
                 value={state?.birthday}
                 className={buttonState?.birthday ? "is-valid" : "is-invalid"}
-                placeholder="ex) 981231"
+                placeholder="ex) 081231"
                 onChange={({ target: { value } }) =>
                     setState({
                         ...state,
@@ -60,7 +59,6 @@ const NameInputBox = ({ state, setState, buttonState, setButtonState }) => {
         var warn = checkRegex("이름에는", ["special", "space"], state?.name);
         setWarnString(warn[0]);
         setButtonState({ ...buttonState, name: false });
-        console.log(warn?.length);
         if (warn?.length < 1) {
             if (state?.name?.length >= 2) {
                 setButtonState({ ...buttonState, name: true });
@@ -174,7 +172,7 @@ const InputBox = () => {
                     </div>
                 </div>
             </div>
-            <ResultModal userName={state?.name} />
+            <ResultModal userInfo={state} />
         </Container>
     );
 };

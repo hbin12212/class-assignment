@@ -1,29 +1,68 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 //reactstrap
 import { Modal, Button } from "reactstrap";
 //store
 import { ModalContext } from "store/ModalStore";
 //scss
 import "./ResultModal.scss";
+//firebase
+import firebase from "firebase";
+import "firebase/firestore";
+//util
+import { getTimeStamp } from "util/timestamp/timestamp";
+import { firebaseConfig } from "firebaseConfig";
+//img
+import celebrate from "img/celebrate.png";
 
-const ResultModal = ({ userName }) => {
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const ResultModal = ({ userInfo }) => {
     const backdrop = "static";
+    const [classResult, setClassResult] = useState("다시 시도해주세요.");
     const { resultModalClick, resultModalToggle } = useContext(ModalContext);
+
+    useEffect(() => {
+        if (resultModalClick) {
+            console.log(userInfo?.name);
+            var tongjinData = db.collection("tongjin");
+            tongjinData
+                .where("name", "==", userInfo?.name)
+                .get()
+                .then(function (querySnapshot) {
+                    querySnapshot.forEach(function (doc) {
+                        console.log(doc.id, " => ", doc.data());
+                        if (doc.data().birth.seconds === getTimeStamp(userInfo?.birthday)) {
+                            setClassResult(doc.data().class);
+                        } else {
+                            setClassResult("다시 시도해주세요.");
+                        }
+                    });
+                })
+                .catch(function (error) {
+                    setClassResult("다시 시도해주세요.");
+                    console.log("오류입니다. 다시 시도해주세요.");
+                });
+        }
+    }, [resultModalClick]);
 
     return (
         <div className="ResultModal">
             <Modal
                 className="ResultModal"
-                size="lg"
+                centered={true}
                 isOpen={resultModalClick}
                 toggle={resultModalToggle}
                 backdrop={backdrop}
             >
                 <div className="result-modal">
-                    <div className="result-modal-title">{userName} 님의 반 </div>
+                    <img src={celebrate}></img>
+                    <div className="result-modal-title">
+                        <div className="user-name">{userInfo?.name}님</div>입학을 축하합니다🎉
+                    </div>
                     <div className="result-modal-content-wrapper">
                         <div className="result-modal-content">
-                            3학년 4반
+                            {classResult === "다시 시도해주세요." ? classResult : "1학년 " + classResult}
                             <br />
                         </div>
                     </div>
