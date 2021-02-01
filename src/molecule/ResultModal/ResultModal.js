@@ -19,7 +19,7 @@ const db = firebase.firestore();
 
 const ResultModal = ({ userInfo }) => {
     const backdrop = "static";
-    const [classResult, setClassResult] = useState("다시 시도해주세요.");
+    const [classResult, setClassResult] = useState("다시 입력해주세요.");
     const { resultModalClick, resultModalToggle } = useContext(ModalContext);
 
     useEffect(() => {
@@ -33,13 +33,15 @@ const ResultModal = ({ userInfo }) => {
                         if (doc.data().birth.seconds === getTimeStamp(userInfo?.birthday)) {
                             setClassResult(doc.data().class);
                         } else {
-                            setClassResult("다시 시도해주세요.");
+                            setClassResult("다시 입력해주세요.");
                         }
                     });
                 })
                 .catch(function (error) {
-                    setClassResult("다시 시도해주세요.");
+                    setClassResult("다시 입력해주세요.");
                 });
+        } else {
+            setClassResult("다시 입력해주세요.");
         }
     }, [resultModalClick]);
 
@@ -59,7 +61,7 @@ const ResultModal = ({ userInfo }) => {
                     </div>
                     <div className="result-modal-content-wrapper">
                         <div className="result-modal-content">
-                            {classResult === "다시 시도해주세요." ? classResult : "1학년 " + classResult}
+                            {classResult === "다시 입력해주세요." ? classResult : "1학년 " + classResult}
                             <br />
                         </div>
                     </div>
