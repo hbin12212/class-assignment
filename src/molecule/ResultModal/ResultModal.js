@@ -19,29 +19,34 @@ const db = firebase.firestore();
 
 const ResultModal = ({ userInfo }) => {
     const backdrop = "static";
-    const [classResult, setClassResult] = useState("다시 입력해주세요.");
+    const [classResult, setClassResult] = useState("");
     const { resultModalClick, resultModalToggle } = useContext(ModalContext);
 
     useEffect(() => {
         if (resultModalClick) {
+            var flag = false;
             var tongjinData = db.collection("tongjin");
             tongjinData
                 .where("name", "==", userInfo?.name)
                 .get()
                 .then(function (querySnapshot) {
                     querySnapshot.forEach(function (doc) {
+                        flag = true;
                         if (doc.data().birth.seconds === getTimeStamp(userInfo?.birthday)) {
                             setClassResult(doc.data().class);
+                            console.log(flag);
                         } else {
                             setClassResult("다시 입력해주세요.");
+                            console.log(flag);
                         }
                     });
-                })
-                .catch(function (error) {
-                    setClassResult("다시 입력해주세요.");
+                    if (flag === false) {
+                        console.log(flag);
+                        setClassResult("다시 입력해주세요.");
+                    }
                 });
         } else {
-            setClassResult("다시 입력해주세요.");
+            setClassResult("");
         }
     }, [resultModalClick]);
 
