@@ -24,24 +24,32 @@ const ResultModal = ({ userInfo }) => {
 
     useEffect(() => {
         if (resultModalClick) {
-            var flag = false;
+            var nameFlag = false;
+            var birthFlag = false;
             var tongjinData = db.collection("tongjin");
             tongjinData
                 .where("name", "==", userInfo?.name)
                 .get()
                 .then(function (querySnapshot) {
                     querySnapshot.forEach(function (doc) {
-                        flag = true;
+                        nameFlag = true; //이름 일치 여부
+                        console.log(doc.data());
                         if (doc.data().birth.seconds === getTimeStamp(userInfo?.birthday)) {
                             setClassResult(doc.data().class);
-                            console.log(flag);
-                        } else {
+                            birthFlag = true;
+                            console.log("일치");
+                        } else if (
+                            //이름을 일치하지만, 생일은 불일치
+                            birthFlag === false &&
+                            doc.data().birth.seconds !== getTimeStamp(userInfo?.birthday)
+                        ) {
                             setClassResult("다시 입력해주세요.");
-                            console.log(flag);
+                            console.log(nameFlag);
                         }
                     });
-                    if (flag === false) {
-                        console.log(flag);
+                    if (nameFlag === false) {
+                        //이름 불일치
+                        console.log(nameFlag);
                         setClassResult("다시 입력해주세요.");
                     }
                 });
