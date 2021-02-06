@@ -28,7 +28,7 @@ const ResultModal = ({ userInfo }) => {
             var birthFlag = false;
             var tongjinData = db.collection("tongjin");
             tongjinData
-                .where("name", "==", userInfo?.name)
+                .where("name", "==", (userInfo?.name).toUpperCase())
                 .get()
                 .then(function (querySnapshot) {
                     querySnapshot.forEach(function (doc) {
@@ -70,7 +70,7 @@ const ResultModal = ({ userInfo }) => {
                 <div className="result-modal">
                     <img src={celebrate}></img>
                     <div className="result-modal-title">
-                        <div className="user-name">{userInfo?.name}님</div>입학을 축하합니다🎉
+                        <div className="user-name">{(userInfo?.name).toUpperCase()}님</div>입학을 축하합니다🎉
                     </div>
                     <div className="result-modal-content-wrapper">
                         <div className="result-modal-content">
